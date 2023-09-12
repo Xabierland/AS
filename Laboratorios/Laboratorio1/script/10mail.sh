@@ -1,6 +1,7 @@
 #! /bin/bash
 
-lista=($(cat mail/nombres.txt))
+lista=($(cat ./mail/nombres.txt))
+echo $lista
 num=1
 
 for nombre in "${lista[@]}"
