@@ -89,7 +89,6 @@ sudo find / -type f -user xabierland
 
 13) Como usuario “root”, mostrar las últimas 30 líneas de /var/log/syslog.
 
-
 ``` bash
 sudo tail -n 30 /var/log/syslog
 ```
