@@ -1,1 +1,0 @@
-              hyperlink file names; WHEN can be 'always' (default if omitted), 'auto', or 'never'

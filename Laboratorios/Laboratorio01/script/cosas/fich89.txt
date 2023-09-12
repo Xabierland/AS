@@ -1,1 +1,0 @@
-              append indicator with style WORD to entry names: none (default), slash (-p), file-type (--file-type), classify (-F)

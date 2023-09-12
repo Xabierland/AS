@@ -1,1 +1,0 @@
-              in a long listing, don't print group names
