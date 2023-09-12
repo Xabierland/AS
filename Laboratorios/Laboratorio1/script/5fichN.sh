@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 if [ ! -d cosas ]; then
     mkdir -p cosas

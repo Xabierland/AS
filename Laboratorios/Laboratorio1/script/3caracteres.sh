@@ -1,2 +1,3 @@
 #! /bin/bash
-echo -n "$1" | wc -m;
+read -p "Teclee una palabra: " palabra
+echo -n $palabra | wc -m;

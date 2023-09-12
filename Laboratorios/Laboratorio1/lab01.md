@@ -60,13 +60,15 @@ total 4
 8) Cambiar permisos para evitar que ningún otro usuario pueda acceder nuestro directorio raíz.
 
 ``` bash
-
+xabier> chmod -R o-rwx $HOME
+xabier> chmod -R g-rwx $HOME
 ```
 
 9) Comprobar cuántos usuarios hay en el sistema y cual es el nuestro Shell de inicio.
 
 ``` bash
-
+xabier> wc -l /etc/passwd #Numero de usuarios del sistema
+xabier> grep "$USER" /etc/passwd | cut -d ":" -f 7
 ```
 
 10) Comprobar cuándo y desde donde accediste la última vez al sistema.
@@ -78,7 +80,8 @@ xabier> last
 11) Comprimir en un archivo .tar.gz los contenidos del directorio $HOME. Descomprimirlos /tmp y comprobar que se ha hecho correctamente.
 
 ``` bash
-
+tar -czvf home.tar.gz $HOME
+tar -xzvf home.tar.gz /tmp
 ```
 
 12) Como usuario “root”, buscar todos los archivos que sean propiedad de tu usuario en el sistema (desde el directorio raíz /) y listarlos en forma extendida (con toda la información).
