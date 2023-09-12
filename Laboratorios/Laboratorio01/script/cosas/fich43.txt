@@ -1,0 +1,1 @@
+              generate output designed for Emacs' dired mode

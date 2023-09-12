@@ -1,0 +1,1 @@
+       -H, --dereference-command-line

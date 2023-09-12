@@ -1,0 +1,1 @@
+       --dereference-command-line-symlink-to-dir

@@ -1,0 +1,1 @@
+       -f     do not sort, enable -aU, disable -ls --color

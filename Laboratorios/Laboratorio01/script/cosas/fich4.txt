@@ -1,0 +1,1 @@
+       ls - list directory contents

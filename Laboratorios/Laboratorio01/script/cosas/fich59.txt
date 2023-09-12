@@ -1,0 +1,1 @@
+       -g     like -l, but do not list owner
