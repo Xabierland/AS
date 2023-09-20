@@ -131,10 +131,6 @@ Disk stats (read/write):
   sdb: ios=4009/2, merge=0/1, ticks=11963/1, in_queue=11965, util=98.66%
 ```
 
-```
-
-```
-
 #### b Mezcla de 75% y 25 % entre operaciones de lectura y escritura
 
 ```bash
@@ -167,55 +163,55 @@ Disk stats (read/write):
 
 ## 4 Gestion avanzada
 
-### 1
+### 1 Borrar las particiones creadas en las secciones anteriores en el disco
 
 ```bash
 
 ```
 
-### 2
+### 2 Añadir un nuevo disco de 10 GB de tipo balanceado a la máquina virtual
 
 ```bash
 
 ```
 
-### 3
+### 3 Crear 2 particiones de 3 GB en cada disco. Crear un volumen lógico LVM con 3 de las 4 particiones. Crear una partición ext4 en el volumen usando el 100% de espacio
 
 ```bash
 
 ```
 
-### 4
+### 4 Montar el sistema de ficheros en un directorio y comprobar su estado. Para ello, copiar alguno de los directorios del sistema operativo a él
 
 ```bash
 
 ```
 
-### 5
+### 5 Añadir la 4ª partición al volumen lógico y extender el tamaño del sistema de ficheros para que ocupe el total del volumen. Comprobar que los datos copiados en el paso anterior siguen estando
 
 ```bash
 
 ```
 
-### 6
+### 6 Borrar el volumen lógico recién creado (utilizar los comandos LVM apropiados)
 
 ```bash
 
 ```
 
-### 7
+### 7 Crear un sistema RAID 5 con 3 de las particiones. Crear un sistema de ficheros ext4 para el sistema RAID 5 y hacerlo accesible. Copiar el contenido de la carpeta /var a la carpeta del sistema RAID
 
 ```bash
 
 ```
 
-### 8
+### 8 Simular un fallo en el tercer disco (parámetro -f). Recuperar la información perdida usando la partición que quedó libre.
 
 ```bash
 
 ```
 
-### 9
+### 9 Desmontar y eliminar el dispositivo RAID. Eliminar el disco creado en el paso 2
 
 ```bash
 
@@ -223,67 +219,67 @@ Disk stats (read/write):
 
 ## 5 Copias de seguridad
 
-### 1
+### 1 Borrar las particiones creadas en la sección anterior en el disco
 
 ```bash
 
 ```
 
-### 2
+### 2 Crear 1 partición de 4 GB en el disco y formatearla como ext4. Montarla en un directorio llamado /backups.
 
 ```bash
 
 ```
 
-### 3
+### 3 Instalar rsnapshot en el sistema y revisar este4 documento donde se detalla su configuración
 
 ```bash
 
 ```
 
-### 4
+### 4 Configurar rsnapshot de la siguiente forma:
 
 ```bash
 
 ```
 
-#### a
+#### a Directorio para almacenar las copias de seguridad: /backups
 
 ```bash
 
 ```
 
-#### b
+#### b Niveles de copia e intervalos
 
 ```bash
 
 ```
 
-#### c
+#### c Directorios a guardar (todos se almacenan en el directorio /backups): /home, /etc y /var/log
 
 ```bash
 
 ```
 
-### 5
+### 5 Verificar que la configuración es correcta con el comando rsnapshot configtest.
 
 ```bash
 
 ```
 
-### 6
+### 6 Realizar una copia de tipo “horaria” y revisar que los contenidos se han copiado correctamente.
 
 ```bash
 
 ```
 
-### 7
+### 7 Crear una carpeta y un fichero nuevo en el directorio /home de tu usuario (incluye algo de texto en el fichero). Después, realizar una nueva copia de tipo “horaria”
 
 ```bash
 
 ```
 
-### 8
+### 8 Verificar que la nueva copia se ha hecho correctamente y revisar los cambios entre ambas copias con el comando rsnapshot-diff.
 
 ```bash
 
