@@ -460,58 +460,87 @@ sudo cfdisk /dev/sdb
 
 ```bash
 sudo cfdisk /dev/sdb
+sudo mkfs.ext4 /dev/sdb1
+sudo mount -t ext4 /dev/sdb1 /mnt/backups
+sudo mkdir /mnt/backups
+sudo chown $USER:$USER /mnt/backups
 ```
 
-### 3 Instalar rsnapshot en el sistema y revisar este4 documento donde se detalla su configuración
+### 3 Instalar rsnapshot en el sistema y revisar este documento donde se detalla su configuración
 
 ```bash
-
+sudo apt install rsnapshot
 ```
 
 ### 4 Configurar rsnapshot de la siguiente forma:
 
-```bash
-
-```
-
 #### a Directorio para almacenar las copias de seguridad: /backups
 
 ```bash
+sudo cp /etc/rsnapshot.conf /etc/rsnapshot.conf.default
+sudo nano /etc/rsnapshot.conf
 
+###########################
+# SNAPSHOT ROOT DIRECTORY #
+###########################
+
+# All snapshots will be stored under this root directory.
+#
+snapshot_root   /mnt/backups/
 ```
 
 #### b Niveles de copia e intervalos
 
 ```bash
+#########################################
+#     BACKUP LEVELS / INTERVALS         #
+# Must be unique and in ascending order #
+# e.g. alpha, beta, gamma, etc.         #
+#########################################
 
+retain  hourly  24
+retain  daily   7
+retain  weekly  4
 ```
 
 #### c Directorios a guardar (todos se almacenan en el directorio /backups): /home, /etc y /var/log
 
 ```bash
+###############################
+### BACKUP POINTS / SCRIPTS ###
+###############################
 
+# LOCALHOST
+backup  /home/          localhost/
+backup  /etc/           localhost/
+#backup /usr/local/     localhost/
+backup  /var/log        localhost/
 ```
 
 ### 5 Verificar que la configuración es correcta con el comando rsnapshot configtest.
 
 ```bash
-
+rsnapshot configtest
 ```
 
 ### 6 Realizar una copia de tipo “horaria” y revisar que los contenidos se han copiado correctamente.
 
 ```bash
-
+sudo rsnapshot hourly
+ls /mnt/backups/hourly.0/
 ```
 
 ### 7 Crear una carpeta y un fichero nuevo en el directorio /home de tu usuario (incluye algo de texto en el fichero). Después, realizar una nueva copia de tipo “horaria”
 
 ```bash
-
+mkdir prueba
+echo "Hola Mundo" > prueba/prueba.txt
+sudo rsnapshot hourly
 ```
 
 ### 8 Verificar que la nueva copia se ha hecho correctamente y revisar los cambios entre ambas copias con el comando rsnapshot-diff.
 
 ```bash
-
+ls /mnt/backups/hourly.1/
+sudo rsnapshot-diff -vH /mnt/backups/hourly.0/ /mnt/backups/hourly.1/
 ```
