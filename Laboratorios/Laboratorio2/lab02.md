@@ -33,7 +33,7 @@ df -h
 ### 4 ¿Es psobile acceder a una particion ext3 que ha sido montada como ext4? ¿Y al reves? ¿Por que?
 
 ```bash
-Se puede montar un ext3 como ext4 pero no un ext4 como un ext3
+Solo se puede montar un sistema ext3 como un ext4 haciendo que el ext4 tenga las limitaciones de ext3. Para montar un sistema ext3 a ext4 debemos hacer ciertas conversiones más.
 ```
 
 ### 5 Desmontar y borrar las 3 ultimas particiones. Crea una unica particion ext4 de 3GB
