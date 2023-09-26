@@ -12,7 +12,7 @@ Sep 26 10:37:29 as xabier: Hola Mundo
 
 ```bash
 sudo nano /etc/rsyslog.d/50-default.conf
-    +    debug.*                         -/var/log/user_debug.log
+    +    user.debug                         -/var/log/user_debug.log
 sudo systemctl restart rsyslog.service
 ```
 
@@ -20,11 +20,12 @@ sudo systemctl restart rsyslog.service
 
 ```bash
 logger -p debug "Hola debug!"
+cat /var/log/user_debug.log
 ```
 
 ## Devolver syslog a su situacion anterior
 
 ```bash
 sudo nano /etc/rsyslog.d/50-default.conf
-    -    debug.*                         -/var/log/user_debug.log
+    -    user.debug                         -/var/log/user_debug.log
 ```

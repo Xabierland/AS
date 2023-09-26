@@ -69,13 +69,13 @@ sudo crontab -e
 #### a. Ejecutar el comando date cada minuto y escribir su salida estandar al fichero /tmp/date.log (se debe escribir al final del fichero cada vez)
 
 ```bash
-
+        *       *       *       *       *       date >> /tmp/date.log
 ```
 
 #### b. Borrar el directorio /tmp los primeros 5 dias de cada mes a las 17:00
 
 ```bash
-
+        0       17      5       *       *       rm -rf /tmp*
 ```
 
 ### 8- Comprobar que las tareas de cron funcionan correctamente (ver el fichero /tmp/date.log)
@@ -84,13 +84,27 @@ sudo crontab -e
 cat /tmp/date.log
 ```
 
-### 9- Usando netcat, A abre una conexión a la escucha en el puerto 3000. Si fuese necesario abrir puertos de Google Cloud, se recomienda este tutorial 1. B se conecta a ese puerto y escribe el mensaje “Hola A”. Tras recibirlo, en la misma conexión, B escribe “Hola B” y cierra la conexión
+### 9- Usando netcat, A abre una conexión a la escucha en el puerto 3000. Si fuese necesario abrir puertos de Google Cloud. B se conecta a ese puerto y escribe el mensaje “Hola A”. Tras recibirlo, en la misma conexión, B escribe “Hola B” y cierra la conexión
 
-### 10-
+```bash
 
-### 11-
+```
+
+### 10- El comando "dd if=/dev/urandom" sirve para generar numeros aleatorios. A abre una conexion a la escucha en el puerto 3000 y B envia numeros aleatorios a esa conexion de A. Sin cerrar la conexion A y B utilizan nethogs para comprobar la tasa de bytes enviados y recibidos en cada parte. ¿Los valores coinciden? Despues, A cierra la conexion
+
+```bash
+
+```
+
+### 11- A crea localmente un fichero con texto aleatroio. Utilizar netcat para que A envie este fichero a B ¿Que diferencia hay entre utilizar netcat y scp para enviar ficheros entre diferentes maquinas?
+
+```bash
+
+```
 
 ## 2. Gestion de los registros del sistema
+
+### 
 
 ## 3. Monitorizacion en google cloud platform
 
