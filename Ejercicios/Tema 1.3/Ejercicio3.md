@@ -28,4 +28,5 @@ cat /var/log/user_debug.log
 ```bash
 sudo nano /etc/rsyslog.d/50-default.conf
     -    user.debug                         -/var/log/user_debug.log
+sudo systemctl restart rsyslog.service
 ```

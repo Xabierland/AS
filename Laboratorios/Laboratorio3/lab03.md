@@ -87,25 +87,55 @@ cat /tmp/date.log
 ### 9- Usando netcat, A abre una conexión a la escucha en el puerto 3000. Si fuese necesario abrir puertos de Google Cloud. B se conecta a ese puerto y escribe el mensaje “Hola A”. Tras recibirlo, en la misma conexión, B escribe “Hola B” y cierra la conexión
 
 ```bash
-
+nc -l -p 3000
+nc 34.147.172.10 3000
 ```
 
 ### 10- El comando "dd if=/dev/urandom" sirve para generar numeros aleatorios. A abre una conexion a la escucha en el puerto 3000 y B envia numeros aleatorios a esa conexion de A. Sin cerrar la conexion A y B utilizan nethogs para comprobar la tasa de bytes enviados y recibidos en cada parte. ¿Los valores coinciden? Despues, A cierra la conexion
 
 ```bash
-
+dd if=/dev/urandom | nc $IP 3000
 ```
 
 ### 11- A crea localmente un fichero con texto aleatroio. Utilizar netcat para que A envie este fichero a B ¿Que diferencia hay entre utilizar netcat y scp para enviar ficheros entre diferentes maquinas?
 
 ```bash
-
+B> dd if=/dev/urando > file.txt
+A> nc -l -p 3000 > file.txt
+B> nc $IP 3000 < file.txt
 ```
 
 ## 2. Gestion de los registros del sistema
 
-### 
+### 1- Leer la página de manual de logger. ¿Con qué parámetro se indica la prioridad de los mensajes?
+
+```bash
+man logger | grep "priority"
+Con el -p
+```
+
+### 2- Utilizando la línea de comandos, enviar el mensaje “Hola Mundo de Logs” al fichero /var/log/syslog. Comprobar que se ha hecho correctamente
+
+```bash
+logger "Hola Mundo de Logs"
+cat /var/log/syslog
+```
+
+### 3- Enviar todos los mensajes de nivel “debug” generados por el servicio sshd al fichero /var/log/ssh.log. Este fichero debe haber sido creado anteriormente y estar vacío. Configurar el servicio sshd para que funcione en modo “debug” y comprobar el efecto que tiene en el fichero ssh.log
+
+```bash
+
+```
+
+### 4- Configurar la rotación de logs (fichero /var/log/syslog) para que se guarden de manera mensual y comprimida, y para que todos los logs generados en un año se guarden en un directorio llamado /var/log/syslog.old
+
+```bash
+sudo nano /etc/logrotate.conf
+monthly
+```
 
 ## 3. Monitorizacion en google cloud platform
+
+### 1-
 
 ## 4. Evaluacion del rendimiento
