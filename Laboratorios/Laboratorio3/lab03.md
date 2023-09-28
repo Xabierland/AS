@@ -110,8 +110,7 @@ B> nc $IP 3000 < file.txt
 ### 1- Leer la página de manual de logger. ¿Con qué parámetro se indica la prioridad de los mensajes?
 
 ```bash
-man logger | grep "priority"
-Con el -p
+man logger | grep "priority" # Con el -p
 ```
 
 ### 2- Utilizando la línea de comandos, enviar el mensaje “Hola Mundo de Logs” al fichero /var/log/syslog. Comprobar que se ha hecho correctamente
@@ -124,18 +123,69 @@ cat /var/log/syslog
 ### 3- Enviar todos los mensajes de nivel “debug” generados por el servicio sshd al fichero /var/log/ssh.log. Este fichero debe haber sido creado anteriormente y estar vacío. Configurar el servicio sshd para que funcione en modo “debug” y comprobar el efecto que tiene en el fichero ssh.log
 
 ```bash
+sudo nano /etc/rsyslog.d/50-default.conf        #Editamos el fichero de logs
+        sshd.debug                      -/var/log/ssh.log
 
+sudo systemctl restart rsyslog.service          #Aplicamos los cambios
 ```
 
 ### 4- Configurar la rotación de logs (fichero /var/log/syslog) para que se guarden de manera mensual y comprimida, y para que todos los logs generados en un año se guarden en un directorio llamado /var/log/syslog.old
 
 ```bash
-sudo nano /etc/logrotate.conf
-monthly
+sudo nano /etc/logrotate.d/rsyslog
+        /var/log/syslog 
+        {
+        rotate 12
+        olddir /var/log/syslog.old
+        monthly
+        compress
+        missingok
+        }
+
+sudo logrotate -f /etc/logrotate.d/rsyslog
 ```
 
-## 3. Monitorizacion en google cloud platform
-
-### 1-
+## 3. Monitorizacion en Google Cloud Platform
 
 ## 4. Evaluacion del rendimiento
+
+### 1- Descarga el benchmark desde la web oficial
+```bash
+wget https://github.com/tud-zih-energy/FIRESTARTER/releases/download/v2.0/FIRESTARTER_2.0.tar.gz
+
+tar -xf FIRESTARTER_2.0.tar.gz
+```
+
+### 2- Ejecutarlo durante 30 segundos, haciendo que muestre información adicional (un “report” de rendimiento). Buscar los parámetros necesarios para ello. ¿Qué valor de GFLOP/s obtienes? Este valor es una métrica de la capacidad de cómputo de tu CPU
+
+```bash
+./FIRESTARTER -r -t 30
+        estimated floating point performance: 28.87 GFLOPS
+```
+
+### 3- La mayoría de CPUs modernas tienen varios conjuntos de instrucciones que permiten obtener diferentes niveles de rendimiento. Firestarter es capaz de detectar los conjuntos de instrucciones disponibles en la CPU y usarlos para evaluar su capacidad. Encuentra el parámetro que muestra los tipos disponibles en tu CPU
+
+```bash
+./FIRESTARTER --list-instruction-groups
+        FIRESTARTER - A Processor Stress Test Utility, Version v2.0
+        Copyright (C) 2021 TU Dresden, Center for Information Services and High Performance Computing
+
+        This program comes with ABSOLUTELY NO WARRANTY; for details run `./FIRESTARTER -w`.
+        This is free software, and you are welcome to redistribute it
+        under certain conditions; run `./FIRESTARTER -c` for details.
+
+        available instruction-groups for payload FMA:
+        L1_2L,L1_2LS_256,L1_L,L1_LS,L1_LS_256,L1_S,L2_2LS_256,L2_L,L2_LS,L2_LS_256,L2_S,L3_L,L3_LS,L3_LS_256,L3_P,L3_S,RAM_L,RAM_LS,RAM_P,RAM_S,REG
+```
+
+### 4- Crea un script que ejecute Firestarter con cada tipo de instrucción disponible en tu CPU durante 30 segundos y reporte el mayor valor de GFLOP/s obtenido. Esté será el mayor rendimiento que el benchmark es capaz de obtener en tu CPU
+
+```bash
+
+```
+
+### 5- Crea un script similar al anterior, pero que devuelva el máximo valor obtenido para el ancho de banda de memoria (cuántos GB/s)
+
+```bash
+
+```
