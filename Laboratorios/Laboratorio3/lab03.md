@@ -123,10 +123,18 @@ cat /var/log/syslog
 ### 3- Enviar todos los mensajes de nivel “debug” generados por el servicio sshd al fichero /var/log/ssh.log. Este fichero debe haber sido creado anteriormente y estar vacío. Configurar el servicio sshd para que funcione en modo “debug” y comprobar el efecto que tiene en el fichero ssh.log
 
 ```bash
+sudo nano /etc/ssh/sshd_config                  #Editamos el fichero de sshd para activar el debug
+        # Logging
+        SyslogFacility AUTH
+        LogLevel DEBUG
+
 sudo nano /etc/rsyslog.d/50-default.conf        #Editamos el fichero de logs
-        sshd.debug                      -/var/log/ssh.log
+        auth.debug                      -/var/log/ssh.log
 
 sudo systemctl restart rsyslog.service          #Aplicamos los cambios
+sudo systemctl restart sshd.service
+
+cat /var/log/ssh.log
 ```
 
 ### 4- Configurar la rotación de logs (fichero /var/log/syslog) para que se guarden de manera mensual y comprimida, y para que todos los logs generados en un año se guarden en un directorio llamado /var/log/syslog.old
@@ -141,8 +149,9 @@ sudo nano /etc/logrotate.d/rsyslog
         compress
         missingok
         }
+        ...
 
-sudo logrotate -f /etc/logrotate.d/rsyslog
+sudo logrotate -f /etc/logrotate.conf
 ```
 
 ## 3. Monitorizacion en Google Cloud Platform
@@ -150,6 +159,7 @@ sudo logrotate -f /etc/logrotate.d/rsyslog
 ## 4. Evaluacion del rendimiento
 
 ### 1- Descarga el benchmark desde la web oficial
+
 ```bash
 wget https://github.com/tud-zih-energy/FIRESTARTER/releases/download/v2.0/FIRESTARTER_2.0.tar.gz
 
@@ -181,7 +191,7 @@ tar -xf FIRESTARTER_2.0.tar.gz
 ### 4- Crea un script que ejecute Firestarter con cada tipo de instrucción disponible en tu CPU durante 30 segundos y reporte el mayor valor de GFLOP/s obtenido. Esté será el mayor rendimiento que el benchmark es capaz de obtener en tu CPU
 
 ```bash
-
+./firestoper.sh
 ```
 
 ### 5- Crea un script similar al anterior, pero que devuelva el máximo valor obtenido para el ancho de banda de memoria (cuántos GB/s)
