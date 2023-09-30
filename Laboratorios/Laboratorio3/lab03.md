@@ -176,16 +176,7 @@ tar -xf FIRESTARTER_2.0.tar.gz
 ### 3- La mayoría de CPUs modernas tienen varios conjuntos de instrucciones que permiten obtener diferentes niveles de rendimiento. Firestarter es capaz de detectar los conjuntos de instrucciones disponibles en la CPU y usarlos para evaluar su capacidad. Encuentra el parámetro que muestra los tipos disponibles en tu CPU
 
 ```bash
-./FIRESTARTER --list-instruction-groups
-        FIRESTARTER - A Processor Stress Test Utility, Version v2.0
-        Copyright (C) 2021 TU Dresden, Center for Information Services and High Performance Computing
-
-        This program comes with ABSOLUTELY NO WARRANTY; for details run `./FIRESTARTER -w`.
-        This is free software, and you are welcome to redistribute it
-        under certain conditions; run `./FIRESTARTER -c` for details.
-
-        available instruction-groups for payload FMA:
-        L1_2L,L1_2LS_256,L1_L,L1_LS,L1_LS_256,L1_S,L2_2LS_256,L2_L,L2_LS,L2_LS_256,L2_S,L3_L,L3_LS,L3_LS_256,L3_P,L3_S,RAM_L,RAM_LS,RAM_P,RAM_S,REG
+./FIRESTARTER --avail
 ```
 
 ### 4- Crea un script que ejecute Firestarter con cada tipo de instrucción disponible en tu CPU durante 30 segundos y reporte el mayor valor de GFLOP/s obtenido. Esté será el mayor rendimiento que el benchmark es capaz de obtener en tu CPU
@@ -197,5 +188,6 @@ tar -xf FIRESTARTER_2.0.tar.gz
 ### 5- Crea un script similar al anterior, pero que devuelva el máximo valor obtenido para el ancho de banda de memoria (cuántos GB/s)
 
 ```bash
-
+#Solo encuentro el source y al compilar me hace un .exe que no puedo ejecutar en linux
+#Esperemos que no entre en el examen :D
 ```
