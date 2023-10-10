@@ -3,8 +3,6 @@
 # Definimos el nombre del zip
 zip=79046036_Xabier_Gabina.tar.gz
 
-# Soy consciente de que deberia usar el $HOME en muchos casos pero para evitar el uso sin cabeza de este script he preferio el direccionamiento absoluto :)
-
 function iniciar_examen
 {
         # Realizamos una copia de seguridad del bash por si las moscas
