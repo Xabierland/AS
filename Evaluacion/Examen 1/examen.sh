@@ -13,7 +13,7 @@ function iniciar_examen
 
         # Borramos la basura antigua del .bash_history
         echo "====Iniciando Examen====" > $HOME/.bash_history
-        sudo echo "====Iniciando Examen====" > /root/.bash_history
+        echo "====Iniciando Examen====" | sudo tee /root/.bash_history
 }
 
 function entregar_examen
@@ -65,4 +65,4 @@ do
                 esac
 done
 
-# https://github.com/$USERland/AS/blob/main/Evaluacion/Examen%201/examen.sh
+# https://github.com/xabierland/AS/blob/main/Evaluacion/Examen%201/examen.sh
