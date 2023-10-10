@@ -1,0 +1,1 @@
+./stream | grep "Triad" | awk '{print $2}'

@@ -188,5 +188,5 @@ tar -xf FIRESTARTER_2.0.tar.gz
 ### 5- Crea un script similar al anterior, pero que devuelva el máximo valor obtenido para el ancho de banda de memoria (cuántos GB/s)
 
 ```bash
-#Duda
+./stream.sh
 ```
