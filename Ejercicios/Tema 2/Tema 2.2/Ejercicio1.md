@@ -4,7 +4,7 @@
 
 ```bash
 # Iniciamos el zookeeper
-bin/zookeeper-server-start.sh config/zookeeper.properties
+bin/zookeeper-server-start.sh config/zookeeper.properties &
 
 # Configuramos el server.properties
 nano config/server.properties
