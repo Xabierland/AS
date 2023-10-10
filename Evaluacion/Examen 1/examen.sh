@@ -8,26 +8,26 @@ zip=79046036_Xabier_Gabina.tar.gz
 function iniciar_examen
 {
         # Realizamos una copia de seguridad del bash por si las moscas
-        cp /home/xabier/.bash_history /home/xabier/.bash_history_cp
+        cp $HOME/.bash_history $HOME/.bash_history_cp
         sudo cp /root/.bash_history /root/.bash_history_cp
 
         # Borramos la basura antigua del .bash_history
-        echo "====Iniciando Examen====" > /home/xabier/.bash_history
+        echo "====Iniciando Examen====" > $HOME/.bash_history
         sudo echo "====Iniciando Examen====" > /root/.bash_history
 }
 
 function entregar_examen
 {
         # Copiamos el historial de bash
-        cp /home/xabier/.bash_history /home/xabier/examen/xabier_history
-        sudo cp /root/.bash_history /home/xabier/examen/root_history
-        sudo chown xabier:xabier /home/xabier/examen/root_history       #Si no, el tar no lo incluira al no poder leerlo
+        cp $HOME/.bash_history $HOME/examen/$USER_history
+        sudo cp /root/.bash_history $HOME/examen/root_history
+        sudo chown $USER:$USER $HOME/examen/root_history       #Si no, el tar no lo incluira al no poder leerlo
 
         # Creamos el tar.gz
-        tar -czvf /home/xabier/$zip -C /home/xabier/ examen/
+        tar -czvf $HOME/$zip -C $HOME/ examen/
 
         # Movemos el tar.gz al servidor apache
-        sudo mv /home/xabier/$zip /var/www/html
+        sudo mv $HOME/$zip /var/www/html
 }
 
 function comprobar_entrega
@@ -64,3 +64,5 @@ do
                 *) salir;;
                 esac
 done
+
+# https://github.com/$USERland/AS/blob/main/Evaluacion/Examen%201/examen.sh
