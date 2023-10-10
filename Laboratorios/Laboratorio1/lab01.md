@@ -9,50 +9,50 @@
 1) Crear una carpeta llamada AS en vuestro directorio raiz de usuario.
 
 ``` bash
-xabier> cd ~
-xabier> mkdir AS
+cd ~
+mkdir AS
 ```
 
 2) Entrar dentro de la carpeta y comprobar que el directorio coincide con el contenido de la variable de entorno PWD.
 
 ``` bash
-xabier> cd AS
-xabier> echo $PWD
+cd AS
+echo $PWD
 ```
 
 3) Instalar cal con el comando apt install ncal. Utilizar cal para mostrar un calendario y redirigir la salida a un fichero de texto. Comprobar que ese fichero se crea correctamente y que su contenido es el esperado.
 
 ``` bash
-xabier> sudo apt install ncal
-xabier> cal > cal.txt
-xabier> cat cal.txt
+sudo apt install ncal
+cal > cal.txt
+cat cal.txt
 ```
 
 4) Copiar el fichero recién creado al directorio raíz del usuario.
 
 ``` bash
-xabier> cp cal.txt ~
+cp cal.txt ~
 ```
 
 5) Moverse al directorio raíz del usuario y listar en formato extendido (parámetro -l) los directorios y archivos presentes. Redirigir esa información a un fichero.
 
 ``` bash
-xabier> cd ~
-xabier> ls -l
-xabier> ls -l > files.txt
+cd ~
+ls -l
+ls -l > files.txt
 ```
 
 6) Listar los 5 ficheros más nuevos de la carpeta /etc (que no sean carpetas).
 
 ``` bash
-xabier> ls -tp /etc | grep -v /$ | head -5
+ls -tp /etc | grep -v /$ | head -5
 ```
 
 7) Cambiar los permisos del fichero creado con información del calendario para que sólo el usuario propietario tenga capacidad de leer y escribir.
 
 ``` bash
-xabier> chmod 600 cal.txt
-xabier> ls -l
+chmod 600 cal.txt
+ls -l
 total 4
 -rw------- 1 xabierland xabierland 188 Sep 12 11:08 cal.txt
 ```
@@ -60,21 +60,21 @@ total 4
 8) Cambiar permisos para evitar que ningún otro usuario pueda acceder nuestro directorio raíz.
 
 ``` bash
-xabier> chmod -R o-rwx $HOME
-xabier> chmod -R g-rwx $HOME
+chmod -R o-rwx $HOME
+chmod -R g-rwx $HOME
 ```
 
 9) Comprobar cuántos usuarios hay en el sistema y cual es el nuestro Shell de inicio.
 
 ``` bash
-xabier> wc -l /etc/passwd #Numero de usuarios del sistema
-xabier> grep "$USER" /etc/passwd | cut -d ":" -f 7
+wc -l /etc/passwd #Numero de usuarios del sistema
+grep "$USER" /etc/passwd | cut -d ":" -f 7
 ```
 
 10) Comprobar cuándo y desde donde accediste la última vez al sistema.
 
 ``` bash
-xabier> last
+last
 ```
 
 11) Comprimir en un archivo .tar.gz los contenidos del directorio $HOME. Descomprimirlos /tmp y comprobar que se ha hecho correctamente.
