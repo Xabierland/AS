@@ -9,7 +9,7 @@ sudo apt install stress-ng
 ## Ejectuar stess-ng durante 2 minutos con 2 hilos CPU. Mientras esta en ejecucion cambiar la prioridad de uno de sus procesos a la minima posible
 
 ```bash
-nohup stress-ng -c 3 -t 2m &            #Creamos los procesos
+stress-ng -c 3 -t 2m &> /dev/null &            #Creamos los procesos
 
 top
 
@@ -19,7 +19,7 @@ sudo renice -n -20 -p 1378              #Cambiamos la prioridad
 ## Ejecutar stress-ng durante 3 minutos con 1 hilo CPU. Minetras esta en ejecucion, limitar su uso de CPU al 50%
 
 ```bash
-nohup stress-ng -c 1 -t 3m &            #Creamos el proceso
+nohup stress-ng -c 1 -t 3m &> /dev/null &         #Creamos el proceso
 
 top
 
