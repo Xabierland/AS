@@ -1,0 +1,288 @@
+====Iniciando Examen====
+./examen.sh 
+lbslk -e7
+lsblk -e7
+clear
+ls
+mkdir Ej1
+cd Ej1
+wget https://egela.ehu.eus/pluginfile.php/8799732/mod_resource/content/1/users.txt
+ls
+cat users.txt 
+ls
+cat
+ls
+rm users.txt 
+nano users.txt
+ln -s $HOME -t /tmp
+ls
+cd
+ls
+ln -s /tmp -t $HOME
+ls
+cd examen/Ej1/
+ls
+nano Ej1.sh
+chmod +x Ej1.sh
+./Ej1.sh 
+nano Ej1.sh 
+echo "" > Ej1.sh 
+nano Ej1.sh 
+./Ej1.sh 
+echo "" > Ej1.sh 
+nano Ej1.sh 
+./Ej1.sh 
+cd ..
+mkdir Ej2
+ls
+cd Ej2
+ls
+lsblk -e7
+sudo cfdisk /dev/sdb
+lsblk -e7
+sudo mkfs.ext4 /dev/sdb1
+sudo mkfs.xfs /dev/sdb2
+ls
+sudo mkdir /discoExt4
+sudo mount -t ext4 /dev/sdb1 /discoExt4
+sudo mkdir /discoXfs
+sudo mount -t xfs /dev/sdb2 /discoXfs
+sudo cp /etc/fstab .
+ls
+mv fstab Ej2_etc_fstab
+ls
+nano Ej2_etc_fstab 
+chown $USER:$USER Ej2_etc_fstab 
+sudo chown $USER:$USER Ej2_etc_fstab 
+nano Ej2_etc_fstab 
+ls
+lsblk -e7
+sudo mdadm --create /dev/md0 --verbose --level=5 --raid-devices=3 /dev/sdb3 /dev/sdb4 /dev/sdb5
+lsblk -e7
+sudo mkfs.ext4 /dev/md0
+sudo mkdir /raidExamen
+sudo mount -t ext4 /dev/md0
+lsblk -e7
+cat /etc/fstab 
+sudo mount -t ext4 /dev/md0 /raidExamen
+sudo apt install fio
+sudo fio --name=datos --size=50M --filename=/raidExamen/datos
+cd
+ls
+cd /
+ls
+cd raidExamen/
+ls
+ls -la
+sudo mdadm /dev/md0 -f /dev/sdb3
+cd
+sudo mdadm /dev/md0 -r /dev/sdb3
+sudo mdadm /dev/md0 –a /dev/sdb6
+lsblk -e7
+sudo mkfs.ext4 /dev/sdb6
+sudo mdadm /dev/md0 –a /dev/sdb6
+cat /proc/mdstat
+sudo mdadm /dev/md0 -f /dev/sdb3
+sudo mdadm /dev/md0 -r /dev/sdb3
+sudo mdadm /dev/md0 –a /dev/sdb6
+cd examen/
+mkdir Ej3
+mkdir Ej4
+sudo umount /dev/md0
+sudo mdadm --stop /dev/md0
+sudo mdadm --zero-superblock /dev/sdb
+lsblk -e7
+cd Ej2
+nano Ej2_comandos.txt
+lsblk -e7
+ls
+cd ..
+ls
+cd Ej3
+ls
+sudo nano /etc/rsyslog.d/50-default.conf
+logger -p warn "Hola User!"
+sudo service rsyslog restart
+logger -p warn "Hola User!"
+cat /var/log/logs_ej3
+ls
+cp /var/log/logs_ej3 .
+cp /etc/rsyslog.d/50-default.conf .
+ls
+mv 50-default.conf Ej3_etc_rsyslog.d_50-default.conf
+mv logs_ej3 Ej3_var_log_logs_ej3
+ls
+apt install mosquitto mosquitto-clients
+sudo apt install mosquitto mosquitto-clients
+sudo mosquitto_passwd -c /etc/mosquitto/passwd Iker
+echo $((1 + RANDOM % 100))
+sudo nano /etc/mosquitto/acl
+ls
+sudo nano /etc/mosquitto/mosquitto.conf
+sudo nano /etc/mosquitto/mosquitto.conf 
+sudo service mosquitto restart
+crontab -e
+mosquitto_pub -h localhost -t examen -m $((1 + RANDOM % 100)) -u Mikel -P 1234
+sudo mosquitto_sub -h localhost -t examen -v -u Iker -P 1234
+sudo nano /etc/mosquitto/mosquitto.conf 
+cat /etc/mosquitto/
+ls /etc/mosquitto/
+cat /etc/mosquitto/aclfile.example 
+mosquitto_pub -h localhost -t examen -m $((1 + RANDOM % 100)) -u Mikel -P 1234
+sudo mosquitto_sub -h localhost -t examen -v -u Iker -P 1234
+sudo service mosquitto restart
+cat /etc/mosquitto/passwd
+sudo mosquitto_sub -h localhost -t examen -v -u Iker -P 1234
+sudo mosquitto_passwd -c /etc/mosquitto/passwd Mikel
+sudo mosquitto_sub -h localhost -t examen -v -u Iker -P 1234
+mosquitto_pub -h localhost -t examen -m $((1 + RANDOM % 100)) -u Mikel -P 1234
+sudo mosquitto_sub -h localhost -t examen -v -u Iker -P 1234
+sudo service mosquitto restart
+sudo mosquitto_sub -h localhost -t examen -v -u Iker -P 1234
+cat /etc/mosquitto/passwd 
+sudo mosquitto_passwd /etc/mosquitto/passwd Iker
+sudo service mosquitto restart
+ls
+sudo service mosquitto restart
+sudo mosquitto_sub -h localhost -t examen -v -u Iker -P 1234
+sudo mosquitto_sub -h localhost -t examen -v -u Iker -P 1234 > logger -p warn
+logger -p warn | sudo mosquitto_sub -h localhost -t examen -v -u Iker -P 1234 > logger -p warn
+cat /var/log/logs_ej3 
+sudo apt install nfs-kernel-server nfs-common
+sudo mkdir /Ej4Examen
+sudo chown $USER:$USER /Ej4Examen
+sudo nano /etc/export
+ls /
+sudo mkdir /montajeNfs
+sudo exportfs -v
+sudo exportfs -ra
+sudo service nfs-kernel-server restart
+sudo mount -t nfs localhost:/Ej4Examen /montajeNfs
+sudo mount -t nfs 127.0.0.1:/Ej4Examen /montajeNfs
+sudo mount -t nfs 104.199.13.141:/Ej4Examen /montajeNfs
+sudo nano /etc/export
+sudo exportfs -v
+sudo exportfs -ra
+sudo service nfs-kernel-server restart
+sudo mount -t nfs localhost:/Ej4Examen /montajeNfs
+sudo mount -t nfs 104.199.13.141:/Ej4Examen /montajeNfs
+sudo mount -t nfs 127.0.0.1:/Ej4Examen /montajeNfs
+ls /
+sudo nano /etc/export
+sudo exportfs -v
+sudo exportfs -ra
+sudo service nfs-kernel-server restart
+sudo mount -t nfs 127.0.0.1:/Ej4Examen /montajeNfs
+cd ..
+ks
+ls
+cd Ej4/
+ls
+wget https://www.cs.virginia.edu/stream/FTP/Code/stream.c
+ls
+sudo apt install gcc
+ls
+gcc -O2 stream.c stream
+gcc -O2 stream.c -o stream
+ls
+./stream 
+sudo nano /etc/export
+sudo exportfs -v
+sudo exportfs -ra
+sudo service nfs-kernel-server restart
+sudo mount -t nfs 127.0.0.1:/Ej4Examen /montajeNfs
+lsblk -e7
+cd
+cat .bash_history
+exit
+sudo mount -t nfs 127.0.0.1:/Ej4Examen /montajeNfs
+ipconfig
+ifconfig
+sudo apt install net-tools
+ifconfig
+sudo mount -t nfs 10.132.0.3:/Ej4Examen /montajeNfs
+cd ..
+ls
+cd xabier
+ls
+cd examen/
+ls
+cd Ej
+cd Ej3
+ls
+sudo fio --name=datos --size=100M --filename=/montajeNfs/datos
+cd ..
+ls
+cd Ej4/
+ls
+nano Ej4_comandos.txt
+echo "" > Ej4_comandos.txt 
+nano Ej4_comandos.txt 
+cd ..
+ls
+cd Ej3
+ls
+cat logger 
+rm logger 
+nano Ej3_comandos.txt
+ls
+rm Ej3_var_log_logs_ej3 
+ls
+cd ..
+ls
+cd Ej2/
+ls
+cat Ej2_comandos.txt 
+ls
+cd ..
+cd Ej1/
+ls
+cat Ej1.sh 
+clear
+cd ..
+ls
+cd Ej4/
+ls
+cat Ej4_comandos.txt 
+sudo mount -t nfs 127.0.0.1:/Ej4Examen /montajeNfs
+nano /etc/export
+apt install nfs-kernel-server nfs-common
+sudo apt install nfs-kernel-server nfs-common
+sudo apt update
+sudo apt upgrade
+cd..
+cd ..
+tree
+sudo apt install tree
+tree
+cd Ej3/
+cat /var/log/logs_ej3 
+cp /var/log/logs_ej3 
+cp /var/log/logs_ej3 .
+mv logs_ej3 Ej3_var_log_logs_ej3
+cd ..
+tree
+cd Ej4
+cp /etc/export
+cp /etc/export .
+mv export Ej4_etc_export
+cd ..
+ls
+cd ..
+chown -R $USER:$USER examen/
+cd examen/
+ls -l
+tree -l
+tree -a
+tree -ls
+ls
+cd Ej4/
+ls
+ls -l
+cd ..
+ls
+./examen.sh 
+ls
+ls -la
+nano examen.sh 
+rm .bash_history 

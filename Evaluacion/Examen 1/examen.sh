@@ -3,6 +3,8 @@
 # Definimos el nombre del zip
 zip=79046036_Xabier_Gabina.tar.gz
 
+# Soy consciente de que deberia usar el $HOME en muchos casos pero para evitar el uso sin cabeza de este script he preferio el direccionamiento absoluto :)
+
 function iniciar_examen
 {
         # Realizamos una copia de seguridad del bash por si las moscas
@@ -17,7 +19,7 @@ function iniciar_examen
 function entregar_examen
 {
         # Copiamos el historial de bash
-        cp $HOME/.bash_history $HOME/examen/$USER_history
+        cp $HOME/.bash_history $HOME/examen/xabier_history
         sudo cp /root/.bash_history $HOME/examen/root_history
         sudo chown $USER:$USER $HOME/examen/root_history       #Si no, el tar no lo incluira al no poder leerlo
 
@@ -63,4 +65,4 @@ do
                 esac
 done
 
-# https://github.com/xabierland/AS/blob/main/Evaluacion/Examen%201/examen.sh
+# https://github.com/$USERland/AS/blob/main/Evaluacion/Examen%201/examen.sh
