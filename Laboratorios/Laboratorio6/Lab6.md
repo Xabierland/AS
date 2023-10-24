@@ -147,5 +147,3 @@ function doPost(request)
 #### Añadirlo a Docker Hub
 
 #### Hacer push de una nueva versión de la imagen
-
-```bash
