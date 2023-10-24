@@ -1,0 +1,57 @@
+# Crear una carpeta /Ej4Examen. Haz que tu usuario tenga permisos de lectura y escritura en la misma.
+
+sudo mkdir /Ej4Examen
+
+sudo chown $USER:$USER /Ej4Examen
+
+## Instalar el servidor NFS y hacer que la carpeta /Ej4Examen se exporte de la sigueinte forma
+
+### Exposicion exclusiva a la propia maquina virtual (nadie de la misma y otra red podra acceder)
+
+### Permisos de lectura y escritura
+
+### Se puede explorar subdirectorios
+
+### Hacer que las escrituras del usuario "root" se traduzcan al usuario "nobody"
+
+sudo apt install nfs-kernel-server nfs-common
+
+sudo nano /etc/export
+    /Ej4Examen 127.0.0.1(rw,no_root_squash)
+
+sudo exportfs -v
+
+sudo exportfs -ra
+
+sudo service nfs-kernel-server restart
+
+## Instalar el cliente NFS y montar la carpeta en /montajeNfs
+
+sudo mkdir /montajeNfs
+sudo mount -t nfs 127.0.0.1:/Ej4Examen /montajeNfs
+
+## Crear un fichero de 100MB con datos aleatorios en /montajeNfs
+
+sudo fio --name=datos --size=100M --filename=/montajeNfs/datos
+
+## Modificar la configuracion de NFS para que la carpeta /Ej4Examen se exporte en modo de solo lectura.
+
+sudo nano /etc/export
+    /Ej4Examen 127.0.0.1(ro,no_root_squash)
+
+sudo exportfs -v
+
+sudo exportfs -ra
+
+sudo service nfs-kernel-server restart
+
+echo "Hola" > /montajeNfs/hola
+
+## Obtener la tasas de transferencia para el disco en el que esta montada la carpeta /montajeNfs
+
+wget https://www.cs.virginia.edu/stream/FTP/Code/stream.c
+
+gcc -O2 stream.c -o stream
+
+./stream    # Fijarse en Triad
+

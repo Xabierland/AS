@@ -1,0 +1,8 @@
+version: "3"
+services:
+  servidor-web:
+    build: .
+    ports:
+      - "80:1080"
+  servidor-bbdd:
+    image: redis

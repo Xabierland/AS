@@ -1,0 +1,50 @@
+# Ejercicio 2
+
+## Crear 6 particiones de 1GB en el disco.
+
+sudo cfdisk
+
+## Formatear 1 de las particiones como ext4 t otra de las particiones como Xfs
+
+sudo mkfs.ext4 /dev/sdb1
+sudo mkfs.xfs /dev/sdb2
+
+## Montar la particiones ext4 en /discoExt4
+
+sudo mkdir /discoExt4
+sudo mount -t ext4 /dev/sdb1 /discoExt4
+
+## Montar la particiones Xfs en /discoXfs y configurar su montaje automaticamente al inicio del sistema
+
+sudo mkdir /discoXfs
+sudo mount -t xfs /dev/sdb2 /discoXfs
+sudo nano /etc/fstab
+
+## Utilizar 3 de las 4 particiones sin formatear para crear un sistema Raid 5.
+
+sudo mdadm --create /dev/md0 --verbose --level=5 --raid-devices=3 /dev/sdb3 /dev/sdb4 /dev/sdb5
+
+## Crear un sistema de ficheros ext4 en el sistema Raid y montarlo en /raidExamen
+
+sudo mkfs.ext4 /dev/md0
+sudo mkdir /raidExamen
+sudo mount -t ext4 /dev/md0 /raidExamen
+
+## Crear un fichero de 50 MB con datos aleatorios dentro de /raidExamen
+
+sudo apt install fio
+sudo fio --name=datos --size=50M --filename=/raidExamen/datos
+
+## Simular un fallo en una de las particiones usadas en el sistema RAID. Utilizar la ultima particion sin formatear para recuperar la informacion perdida
+
+sudo mdadm /dev/md0 -f /dev/sdb3
+sudo mdadm /dev/md0 -r /dev/sdb3
+sudo mkfs.ext4 /dev/sdb6
+sudo mdadm /dev/md0 –a /dev/sdb6
+cat /proc/mdstat                    # Comprobar que se ha recuperado el RAID
+
+## Desmonatar y parar el sistema RAID. Eliminar la informacion RAID de las particiones utilizadas
+
+sudo umount /dev/md0
+sudo mdadm --stop /dev/md0
+sudo mdadm --zero-superblock /dev/sdb

@@ -1,5 +1,0 @@
-syslog
-lxd
-tsrs
-landscape
-windows

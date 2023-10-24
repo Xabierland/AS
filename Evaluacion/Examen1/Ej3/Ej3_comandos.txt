@@ -1,0 +1,39 @@
+# Ejercicio 3
+
+## Configurar el sistema de logs
+
+sudo nano /etc/rsyslog.d/50-default.conf
+sudo service rsyslog restart
+logger -p warn "Hola User!"
+cat /var/log/logs_ej3
+Oct 13 15:54:45 examen1 xabier: Hola User!
+
+## Configurar un Broker Mosquitto local que requiera autenticacion para enviar y recibir mensajes. COnfigurar los siguientes permisos para un topic "examen"
+
+sudo apt install mosquitto mosquitto-clients
+sudo mosquitto_passwd -c /etc/mosquitto/passwd Iker     #1234
+sudo mosquitto_passwd /etc/mosquitto/passwd Mikel    #1234
+sudo nano /etc/mosquitto/acl
+    #User A
+    user Iker
+    topic read examen
+
+    #User B
+    user Mikel
+    topic readwrite examen
+
+sudo nano /etc/mosquitto/mosquitto.conf
+    #allow_anonymous true
+    password_file /etc/mosquitto/passwd
+    acl_file /etc/mosquitto/acl
+
+sudo service mosquitto restart
+
+## Pogramar el sistema para que cada 1 minuto se envie un mensaje MQTT al topic "examen" usando el usuario "Mikel". El contenido del mesanje sera un numero aleatorio entre 1 y 100
+
+crontab -e
+    * * * * * mosquitto_pub -h localhost -t examen -m $((1 + RANDOM % 100)) -u Mikel -P 1234
+
+## Usando un suscriptor Mosquitto y el usuario "Iker", hacer que cada mensaje recibido al topic "examen" se envie al log del sistema con nivel "warning"
+
+sudo mosquitto_sub -h localhost -t examen -v -u Iker -P 1234 >> /var/log/logs_ej3
