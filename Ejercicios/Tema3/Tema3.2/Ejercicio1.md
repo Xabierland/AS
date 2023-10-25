@@ -35,5 +35,7 @@ cat /datos/fichero2.txt
 ## Desde la Shell del anfitrión. Encontrar el directorio donde se almacenan los 2 ficheros
 
 ```bash
+docker inspect datos-ej-1
+
 /var/lib/docker/volumes/datos-ej-1/_data
 ```
