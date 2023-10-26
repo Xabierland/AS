@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mi-pod
+  labels:
+    component: web
+spec:
+    containers:
+    - name: mi-contenedor
+        image: ulopeznovoa/simple-web-80
+        ports:
+        - containerPort: 80
