@@ -16,13 +16,13 @@ kind: Pod
 metadata:
   name: mi-pod
   labels:
-    component: web
+    modulo: servidor-web
 spec:
-    containers:
-    - name: mi-contenedor
-        image: ulopeznovoa/simple-web-80
-        ports:
-        - containerPort: 80
+  containers:
+  - name: mi-contenedor
+    image: ulopeznovoa/simple-web-80
+    ports:
+      - containerPort: 80
 ```
 
 ```bash
@@ -37,14 +37,14 @@ kind: Service
 metadata:
   name: mi-servicio
   labels:
-    component: web
+    modulo: servidor-web
 spec:
-    type: LoadBalancer
-    ports:
-    - port: 80
-        targetPort: 80
-    selector:
-        component: web
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    component: web
 ```
 
 ```bash

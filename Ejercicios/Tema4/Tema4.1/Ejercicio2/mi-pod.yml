@@ -3,10 +3,10 @@ kind: Pod
 metadata:
   name: mi-pod
   labels:
-    component: web
+    modulo: servidor-web
 spec:
   containers:
-    - name: mi-contenedor
-      image: ulopeznovoa/simple-web-80
-      ports:
-        - containerPort: 80
+  - name: mi-contenedor
+    image: ulopeznovoa/simple-web-80
+    ports:
+      - containerPort: 80
