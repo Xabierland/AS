@@ -1,8 +1,8 @@
 # Ejercicio 2
 
-## Configurar el cluster Kubernetes con:
+## Configurar el cluster Kubernetes con
 
-### Un Pod que:
+### Un Pod que
 
 #### Ejecute la imagen "ulopeznovoa/simple-web-80"
 
@@ -25,6 +25,10 @@ spec:
         - containerPort: 80
 ```
 
+```bash
+kubectl apply -f mi-pod.yml
+```
+
 #### Un LoadBalancer que exponga el puerto 80 del Pod al exterior
 
 ```yml
@@ -43,8 +47,26 @@ spec:
         component: web
 ```
 
+```bash
+kubectl apply -f mi-load-balancer.yml
+```
+
 ## Verificar que el en contenedor esta en ejecucion y es accesible
+
+```bash
+kubectl get pods
+```
 
 ### Abir en un navegador
 
+```bash
+kubectl get services #Ver la IP externa
+firefox http://<IP externa>:80
+```
+
 ## Eliminar los objetos Pod y LoadBalancer recien creados
+
+```bash
+kubectl delete pod mi-pod
+kubectl delete service mi-servicio
+```

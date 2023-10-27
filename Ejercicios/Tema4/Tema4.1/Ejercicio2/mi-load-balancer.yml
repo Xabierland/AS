@@ -5,9 +5,9 @@ metadata:
   labels:
     component: web
 spec:
-    type: LoadBalancer
-    ports:
+  type: LoadBalancer
+  ports:
     - port: 80
-        targetPort: 80
-    selector:
-        component: web
+      targetPort: 80
+  selector:
+    component: web

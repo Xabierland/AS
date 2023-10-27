@@ -5,8 +5,8 @@ metadata:
   labels:
     component: web
 spec:
-    containers:
+  containers:
     - name: mi-contenedor
-        image: ulopeznovoa/simple-web-80
-        ports:
+      image: ulopeznovoa/simple-web-80
+      ports:
         - containerPort: 80
