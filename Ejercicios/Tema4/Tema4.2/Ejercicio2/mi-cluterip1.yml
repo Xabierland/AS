@@ -5,7 +5,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    modulo: pod1
+    modulo: deployment1
   ports:
   - port: 80
     targetPort: 5000

@@ -3,9 +3,9 @@ kind: Service
 metadata:
   name: cluster3
 spec:
-  tpye: ClusterIP
+  type: ClusterIP
   selector:
-    modulo: pod3
+    modulo: deployment3
   ports:
   - port: 80
     targetPort: 5000

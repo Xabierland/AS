@@ -13,7 +13,7 @@ spec:
             name: cluster1
             port:
               number: 80
-      - path: /ayuda
+      - path: /ayuda/
         pathType: Prefix
         backend:
           service:

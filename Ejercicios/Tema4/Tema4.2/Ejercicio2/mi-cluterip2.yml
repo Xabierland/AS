@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: cluster2
+  name: redis-service
 spec:
-  tpye: ClusterIP
+  type: ClusterIP
   selector:
-    modulo: pod2
+    modulo: deployment2
   ports:
   - port: 6379
     targetPort: 6379
