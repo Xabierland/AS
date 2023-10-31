@@ -72,12 +72,12 @@ metadata:
 spec:
   rules:
   - http:
-    paths:
-      - path: /*
-        pathType: ImplementationSpecific
+      paths:
+      - path: /
+        pathType: Prefix
         backend:
           service:
-            modulo: servidor-web
+            name: mi-clusterip
             port:
               number: 80
 ```
@@ -89,7 +89,7 @@ kubectl apply -f mi-ingress.yml
 ## Verificar con un navegador que el despliegue funciona
 
 ```bash
-kubectl get Ingress
+kubectl get ingress
 
 firefox http://<ip>
 ```

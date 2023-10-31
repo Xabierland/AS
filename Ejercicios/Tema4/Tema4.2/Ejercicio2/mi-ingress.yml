@@ -10,6 +10,13 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: mi-clusterip
+            name: cluster1
+            port:
+              number: 80
+      - path: /ayuda
+        pathType: Prefix
+        backend:
+          service:
+            name: cluster3
             port:
               number: 80

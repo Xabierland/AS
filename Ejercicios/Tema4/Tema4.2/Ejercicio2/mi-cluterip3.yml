@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cluster3
+spec:
+  tpye: ClusterIP
+  selector:
+    modulo: pod3
+  ports:
+  - port: 80
+    targetPort: 5000

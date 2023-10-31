@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mi-deployment
+  name: deployment1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      modulo: servidor-web
+      modulo: deployment1
   template:
     metadata:
       labels:
-        modulo: servidor-web
+        modulo: deployment1
     spec: 
       containers:
-      - name: mi-pod
-        image: httpd:alpine
+      - name: pod2
+        image: redis:alpine
         ports:
-        - containerPort: 80
+        - containerPort: 6379
