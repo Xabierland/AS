@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mi-deployment2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      modulo: servidor-web
+  template:
+    metadata:
+      labels:
+        modulo: servidor-web
+    spec: 
+      volumes:
+      - name: mi-vp
+        persistentVolumeClaim:
+          claimName: mi-rvp
+      containers:
+      - name: mi-pod
+        image: httpd:alpine
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /datos1
+          name: mi-vp
