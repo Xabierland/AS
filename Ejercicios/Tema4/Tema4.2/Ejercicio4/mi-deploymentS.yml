@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mi-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      modulo: servidor-web
+  template:
+    metadata:
+      labels:
+        modulo: servidor-web
+    spec: 
+      containers:
+      - name: mi-pod
+        image: xabierland/mi-apache
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: mi-secreto
