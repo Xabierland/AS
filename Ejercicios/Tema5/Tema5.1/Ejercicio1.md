@@ -19,13 +19,14 @@ on: push
 
 jobs:
   test-python:
-    runs-on: python:slim
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Install dependencies
+      - uses: actions/checkout@v4
+      - name: Instalar dependencia
         run: pip install pytest
-      - name: Run tests
+      - name: Ejecutar pruebas
         run: pytest test.py
+
 ```
 
 ## Introducir un fallo en el código
