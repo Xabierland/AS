@@ -3,7 +3,7 @@
 ## Crear un patron Grok que encaje con el formato de Logs mostrados en la diapositiva anterior
 
 ```patron
-%{IP:client} - - %{DATE:timestamp} - %{INT:estado} %{WORD:method} %{URI:url}
+%{IP:cliente} - - %{DATE:fecha} - %{INT:estado} %{WORD:metodo} %{URI:direccion}
 ```
 
 ## Configurar pipeline Logstash
