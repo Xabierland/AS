@@ -5,7 +5,6 @@
 ### Crear un indice llamado "bank" y importar el accounts.json
 
 ```bash
-curl -XPUT "localhost:9200/bank?pretty"
 curl -H "Content-Type: application/json" -XPOST "localhost:9200/bank/_bulk?pretty&refresh" --data-binary "@accounts.json"
 ```
 
