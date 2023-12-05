@@ -64,12 +64,12 @@ curl -XGET "localhost:9200/bank/_search?pretty" -H 'Content-Type: application/js
 '
 ```
 
-#### Recuperar los datos de los residentes en el estado de New Jersey (NI) y mostrar los resultados ordenados por su balance de forma ascendente
+#### Recuperar los datos de los residentes en el estado de New Jersey (NJ) y mostrar los resultados ordenados por su balance de forma ascendente
 
 ```bash
 curl -XGET "localhost:9200/bank/_search?pretty" -H 'Content-Type: application/json' -d'
 {
-  "query": { "match": { "state": "NI" } },
+  "query": { "match": { "state": "NJ" } },
   "sort": { "balance": { "order": "asc" } }
 }
 '
