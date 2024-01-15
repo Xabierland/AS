@@ -135,7 +135,7 @@ curl -XGET "localhost:9200/bank/_search?pretty" -H 'Content-Type: application/js
 
 ### Prefijo de busqueda y comodines
 
-#### Recuperar los datos de las personas cuyos apellidos comiencen por "Mc".
+#### Recuperar los datos de las personas cuyos apellidos comiencen por "Mc"
 
 ```bash
 curl -XGET "localhost:9200/bank/_search?pretty" -H 'Content-Type: application/json' -d'
