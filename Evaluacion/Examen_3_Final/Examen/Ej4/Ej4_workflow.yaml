@@ -1,0 +1,21 @@
+name: ej4-workflow
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Instalar logstash
+              run: |
+                wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elastic-keyring.gpg
+                sudo apt-get install apt-transport-https
+                echo "deb [signed-by=/usr/share/keyrings/elastic-keyring.gpg] https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-8.x.list
+                sudo apt-get update && sudo apt-get install logstash
+            - name: Validar el fichero de configuracion
+              run: |
+                sudo /usr/share/logstash/bin/logstash -t -f logstash.conf
+
